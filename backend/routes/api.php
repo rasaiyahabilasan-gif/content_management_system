@@ -8,3 +8,5 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('/test', [App\Http\Controllers\Api\TestController::class, 'index']);
+
+Route::get('/posts', [App\Http\Controllers\Api\PostController::class, 'index']);
