@@ -141,4 +141,84 @@ class UserController extends Controller
             'message' => 'User deleted successfully'
         ], 200);
     }
+
+
+    public function teachers()
+    {
+        $teachers = User::where('role', 'teacher')
+            ->select(
+                'id',
+                'name',
+                'email',
+                'role',
+                'created_at'
+            )
+            ->get();
+
+        return response()->json([
+            'message' => 'Teachers retrieved successfully',
+            'teachers' => $teachers
+        ], 200);
+    }
+
+
+    public function showTeacher($id)
+    {
+        $teacher = User::where('role', 'teacher')
+            ->where('id', $id)
+            ->select(
+                'id',
+                'name',
+                'email',
+                'role',
+                'created_at'
+            )
+            ->firstOrFail();
+
+        return response()->json([
+            'message' => 'Teacher details retrieved successfully',
+            'teacher' => $teacher
+        ], 200);
+    }
+
+
+    public function updateTeacher(Request $request, $id)
+    {
+        $teacher = User::where('role', 'teacher')
+            ->findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $teacher->id,
+        ]);
+
+        $teacher->update([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+
+        return response()->json([
+            'message' => 'Teacher details updated successfully',
+            'teacher' => $teacher->only([
+                'id',
+                'name',
+                'email',
+                'role'
+            ]),
+        ], 200);
+    }
+
+    
+    public function destroyTeacher($id)
+    {
+        $teacher = User::where('role', 'teacher')
+            ->findOrFail($id);
+
+        $teacher->delete();
+
+        return response()->json([
+            'message' => 'Teacher account deleted successfully'
+        ], 200);
+    }
+
 }
