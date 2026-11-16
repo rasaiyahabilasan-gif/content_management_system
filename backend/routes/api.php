@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\UserController;
 
 Route::post('/register', [AuthController::class, 'register']);
 
@@ -34,3 +35,14 @@ Route::get('/posts', [App\Http\Controllers\Api\PostController::class, 'index']);
 
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::middleware(['auth:sanctum', 'role:admin'])->get('/admin/users', [UserController::class, 'index']);
+
+Route::middleware(['auth:sanctum', 'role:admin'])->post('/admin/teachers', [UserController::class, 'store']);
+
+Route::middleware(['auth:sanctum', 'role:admin'])->post('/admin/admins', [UserController::class, 'createAdmin']);
+
+Route::middleware(['auth:sanctum', 'role:admin'])->put('/admin/users/{id}', [UserController::class, 'update']);
+
+Route::middleware(['auth:sanctum', 'role:admin'])->put('/admin/users/{id}/role', [UserController::class, 'updateRole']);
+
+Route::middleware(['auth:sanctum', 'role:admin'])->delete('/admin/users/{id}', [UserController::class, 'destroy']);
