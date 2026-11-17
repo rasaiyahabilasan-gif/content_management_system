@@ -221,4 +221,93 @@ class UserController extends Controller
         ], 200);
     }
 
+    public function students()
+    {
+        $students = User::where('role', 'student')
+            ->select(
+                'id',
+                'name',
+                'email',
+                'role',
+                'created_at'
+            )
+            ->get();
+
+        return response()->json([
+            'message' => 'Students retrieved successfully',
+            'students' => $students
+        ], 200);
+    }
+
+    public function showStudent($id)
+    {
+        $student = User::where('role', 'student')
+            ->where('id', $id)
+            ->select(
+                'id',
+                'name',
+                'email',
+                'role',
+                'created_at'
+            )
+            ->first();
+
+        if (!$student) {
+            return response()->json([
+                'message' => 'Student not found'
+            ], 404);
+        }
+
+        return response()->json([
+            'message' => 'Student retrieved successfully',
+            'student' => $student
+        ], 200);
+    }
+
+    public function updateStudent(Request $request, $id)
+    {
+        $student = User::where('role', 'student')
+            ->where('id', $id)
+            ->first();
+
+        if (!$student) {
+            return response()->json([
+                'message' => 'Student not found'
+            ], 404);
+        }
+
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $id,
+        ]);
+
+        $student->update([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+        ]);
+
+        return response()->json([
+            'message' => 'Student updated successfully',
+            'student' => $student
+        ], 200);
+    }
+
+    public function destroyStudent($id)
+    {
+        $student = User::where('role', 'student')
+            ->where('id', $id)
+            ->first();
+
+        if (!$student) {
+            return response()->json([
+                'message' => 'Student not found'
+            ], 404);
+        }
+
+        $student->delete();
+
+        return response()->json([
+            'message' => 'Student deleted successfully'
+        ], 200);
+    }
 }
