@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\ContentController;
 
 Route::post('/register', [AuthController::class, 'register']);
 
@@ -62,3 +63,17 @@ Route::middleware(['auth:sanctum', 'role:admin'])->get('/admin/students/{id}', [
 Route::middleware(['auth:sanctum', 'role:admin'])->put('/admin/students/{id}', [UserController::class, 'updateStudent']);
 
 Route::middleware(['auth:sanctum', 'role:admin'])->delete('/admin/students/{id}', [UserController::class, 'destroyStudent']);
+
+Route::middleware(['auth:sanctum', 'role:admin,teacher'])->group(function () {
+
+    Route::post('/contents', [ContentController::class, 'store']);
+
+    Route::get('/contents', [ContentController::class, 'index']);
+
+    Route::get('/contents/{id}', [ContentController::class, 'show']);
+
+    Route::put('/contents/{id}', [ContentController::class, 'update']);
+
+    Route::delete('/contents/{id}', [ContentController::class, 'destroy']);
+
+});
