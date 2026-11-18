@@ -264,6 +264,33 @@ class UserController extends Controller
         ], 200);
     }
 
+
+    public function createStudent(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        $student = User::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+            'role' => 'student',
+        ]);
+
+        return response()->json([
+            'message' => 'Student account created successfully',
+            'student' => $student->only([
+                'id',
+                'name',
+                'email',
+                'role'
+            ]),
+        ], 201);
+    }
+
     public function updateStudent(Request $request, $id)
     {
         $student = User::where('role', 'student')
@@ -291,7 +318,7 @@ class UserController extends Controller
             'student' => $student
         ], 200);
     }
-
+    
     public function destroyStudent($id)
     {
         $student = User::where('role', 'student')

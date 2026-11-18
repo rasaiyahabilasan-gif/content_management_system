@@ -1,111 +1,258 @@
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+/* General page settings */
+* {
+    box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+html,
+body,
+#root {
+    min-height: 100%;
+    margin: 0;
 }
 
 body {
-  margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+/* LOGIN PAGE - Lavender */
+.login-page {
+    min-height: 100vh;
+    padding: 30px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+        135deg,
+        #e9d5ff,
+        #f5eaff,
+        #ddd6fe,
+        #f3e8ff
+    );
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+/* LOGIN CARD - Transparent glass effect */
+.login-card {
+    width: 100%;
+    max-width: 460px;
+    background: rgba(255, 255, 255, 0.68);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 20px;
+    box-shadow: 0 12px 35px rgba(88, 50, 140, 0.15);
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
+/* DASHBOARD COMMON SETTINGS */
+.dashboard-page {
+    min-height: 100vh;
+    padding-bottom: 30px;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+/* ADMIN - Lavender and purple */
+.admin-page {
+    background: linear-gradient(135deg, #ede9fe, #ddd6fe, #f5f3ff);
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+/* TEACHER - Blue and lavender */
+.teacher-page {
+    background: linear-gradient(135deg, #e0e7ff, #dbeafe, #f3e8ff);
+}
+
+/* STUDENT - Pink and lavender */
+.student-page {
+    background: linear-gradient(135deg, #fce7f3, #f3e8ff, #ede9fe);
+}
+
+/* Dashboard content cards */
+.dashboard-page .card {
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 14px;
+    box-shadow: 0 5px 18px rgba(60, 40, 100, 0.08);
+}
+
+/* Dashboard headings */
+.dashboard-page h1,
+.dashboard-page h2,
+.dashboard-page h3 {
+    color: #35245f;
+}
+
+/* Keep dashboard content readable */
+.dashboard-page .container,
+.dashboard-page .container-fluid {
+    position: relative;
+}
+
+/* Lavender Login Background */
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(
+        135deg,
+        #e6d9ff,
+        #f3eaff,
+        #d8c5ff
+    );
+    padding: 30px 15px;
+}
+
+/* Transparent Glass Login Card */
+.login-card {
+    background: rgba(255, 255, 255, 0.65) !important;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.7) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 8px 32px rgba(80, 50, 120, 0.15) !important;
+}
+
+/* Admin Dashboard - Lavender */
+.admin-page {
+    background: linear-gradient(
+        135deg,
+        #e8dcff,
+        #f5efff
+    );
+    padding: 20px;
+}
+
+/* Teacher Dashboard - Soft Purple */
+.teacher-page {
+    background: linear-gradient(
+        135deg,
+        #e4e0ff,
+        #f0edff
+    );
+    padding: 20px;
+}
+
+/* Student Dashboard - Light Pink Lavender */
+.student-page {
+    background: linear-gradient(
+        135deg,
+        #f5e1ff,
+        #fdf1ff
+    );
+    padding: 20px;
+}
+
+/* Admin Dashboard Navbar */
+.admin-navbar {
+    background: linear-gradient(
+        135deg,
+        #8064b5,
+        #9678c9
+    );
+    border-radius: 8px;
+    padding: 15px 20px;
+}
+
+/* Admin Navbar Text */
+.admin-navbar .navbar-brand {
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+/* Admin Navbar Logout Button */
+.admin-navbar .btn {
+    background-color: #ffffff;
+    color: #59417e;
+    border: none;
+    font-weight: 500;
+}
+
+.admin-navbar .btn:hover {
+    background-color: #eee7fa;
+    color: #493365;
+}
+
+/* Teacher Dashboard Navbar */
+.teacher-navbar {
+    background: linear-gradient(
+        135deg,
+        #6575b8,
+        #8290d0
+    );
+    border-radius: 8px;
+    padding: 15px 20px;
+}
+
+.teacher-navbar .navbar-brand {
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+.teacher-navbar .btn {
+    background-color: #ffffff;
+    color: #52639e;
+    border: none;
+    font-weight: 500;
+}
+
+.teacher-navbar .btn:hover {
+    background-color: #e9edff;
+    color: #394a85;
+}
+
+
+/* Student Dashboard Navbar */
+.student-navbar {
+    background: linear-gradient(
+        135deg,
+        #b46c9d,
+        #cf8ab7
+    );
+    border-radius: 8px;
+    padding: 15px 20px;
+}
+
+.student-navbar .navbar-brand {
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+.student-navbar .btn {
+    background-color: #ffffff;
+    color: #98547f;
+    border: none;
+    font-weight: 500;
+}
+
+.student-navbar .btn:hover {
+    background-color: #fceaf5;
+    color: #783d63;
+}
+
+
+/* CMS Theme Buttons - Lavender Purple */
+
+.cms-primary-btn {
+    background: linear-gradient(135deg, #8064b5, #9678c9);
+    color: #ffffff !important;
+    border: 1px solid #8064b5;
+    border-radius: 7px;
+    font-weight: 500;
+    transition: all 0.25s ease;
+}
+
+.cms-primary-btn:hover {
+    background: linear-gradient(135deg, #6e529f, #8064b5);
+    color: #ffffff !important;
+    border-color: #6e529f;
+    transform: translateY(-1px);
+}
+
+.cms-primary-btn:focus {
+    box-shadow: 0 0 0 0.2rem rgba(128, 100, 181, 0.25);
+}
+
+/* Role Badge */
+.cms-role-badge {
+    background-color: #e9defa;
+    color: #59417e;
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-weight: 600;
 }

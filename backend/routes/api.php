@@ -58,6 +58,8 @@ Route::middleware(['auth:sanctum', 'role:admin'])->delete('/admin/users/{id}', [
 
 Route::middleware(['auth:sanctum', 'role:admin'])->get('/admin/students', [UserController::class, 'students']);
 
+Route::middleware(['auth:sanctum', 'role:admin'])->post('/admin/students', [UserController::class, 'createStudent']);
+
 Route::middleware(['auth:sanctum', 'role:admin'])->get('/admin/students/{id}', [UserController::class, 'showStudent']);
 
 Route::middleware(['auth:sanctum', 'role:admin'])->put('/admin/students/{id}', [UserController::class, 'updateStudent']);
